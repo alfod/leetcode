@@ -1,3 +1,7 @@
+package leetcode.hard;
+
+import leetcode.BaseTest;
+import me.alfod.hard.MedianOfTwoSortedArray;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -9,7 +13,7 @@ import java.util.Arrays;
  * @lastUpdateTime 2018/6/25  18:20
  * @note
  */
-public class MedianOfTwoSortedArrayTest {
+public class MedianOfTwoSortedArrayTest   extends BaseTest {
 
     private MedianOfTwoSortedArray medianOfTwoSortedArray = new MedianOfTwoSortedArray();
 
@@ -20,9 +24,7 @@ public class MedianOfTwoSortedArrayTest {
         print(range);
     }
 
-    private void print(int[] ints) {
-        System.out.println(Arrays.toString(ints));
-    }
+
 
     @Test
     public void test1() {

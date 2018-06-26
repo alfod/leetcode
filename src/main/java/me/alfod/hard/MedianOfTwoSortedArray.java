@@ -1,6 +1,4 @@
-
-
-import java.util.Arrays;
+package me.alfod.hard;
 
 /**
  * Created by Arvin Alfod on 2018/4/25.
