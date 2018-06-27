@@ -1,6 +1,7 @@
 package leetcode;
 
-import java.util.Arrays;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * @author Yang Dong
@@ -11,8 +12,10 @@ import java.util.Arrays;
  */
 public class BaseTest {
 
-    public void print(int[] ints) {
-        System.out.println(Arrays.toString(ints));
+    private Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+    protected void print(Object object) {
+        System.out.println(gson.toJson(object));
     }
 
 }

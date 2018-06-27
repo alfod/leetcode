@@ -1,8 +1,9 @@
 package leetcode.hard;
 
+import leetcode.BaseTest;
 import me.alfod.hard.MedianOfTwoSortedArray;
-import me.alfod.hard.Utils;
 import org.junit.Test;
+import sun.misc.Unsafe;
 
 import java.util.Arrays;
 
@@ -13,14 +14,54 @@ import java.util.Arrays;
  * @lastUpdateTime 2018/6/25  18:20
  * @note
  */
-public class MedianOfTwoSortedArrayTest    implements Utils{
-
+public class MedianOfTwoSortedArrayTest extends BaseTest {
     private MedianOfTwoSortedArray medianOfTwoSortedArray = new MedianOfTwoSortedArray();
 
     @Test
-    public void findRangeTest() {
-        int[] nums = new int[]{1, 2, 3, 3, 3, 3, 4, 4, 4, 5, 7};
-        int[] range = medianOfTwoSortedArray.findRange(nums, 4, 6, new int[]{0, 10});
+    public void findRangeTest1() {
+        int[] nums = new int[]{1, 4, 4, 4, 5, 7};
+        int[] range = medianOfTwoSortedArray.findRange(nums, 2, 2, new int[]{-1, 10});
+        print(range);
+    }
+
+    @Test
+    public void findRangeTest2() {
+        int[] nums = new int[]{1, 4, 4, 4, 5, 7};
+        int[] range = medianOfTwoSortedArray.findRange(nums, 4, 2, new int[]{-1, 10});
+        print(range);
+    }
+
+    @Test
+    public void findRangeTest3() {
+        int[] nums = new int[]{1, 4, 4, 4, 5, 7};
+        int[] range = medianOfTwoSortedArray.findRange(nums, 6, 2, new int[]{-1, 10});
+        print(range);
+    }
+    @Test
+    public void findRangeTest4() {
+        int[] nums = new int[]{1, 4, 4, 4, 5, 7};
+        int[] range = medianOfTwoSortedArray.findRange(nums, 7, 2, new int[]{-1, 10});
+        print(range);
+    }
+
+    @Test
+    public void findRangeTest5() {
+        int[] nums = new int[]{1, 4, 4, 4, 5, 7};
+        int[] range = medianOfTwoSortedArray.findRange(nums, 1, 2, new int[]{-1, 10});
+        print(range);
+    }
+
+    @Test
+    public void findRangeTest6() {
+        int[] nums = new int[]{1, 4, 4, 4, 5, 7};
+        int[] range = medianOfTwoSortedArray.findRange(nums, 0, 2, new int[]{-1, 10});
+        print(range);
+    }
+
+    @Test
+    public void findRangeTest7() {
+        int[] nums = new int[]{1, 4, 4, 4, 5, 7};
+        int[] range = medianOfTwoSortedArray.findRange(nums, 8, 2, new int[]{-1, 10});
         print(range);
     }
 

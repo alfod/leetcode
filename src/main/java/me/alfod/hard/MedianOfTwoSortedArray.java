@@ -160,43 +160,116 @@ public class MedianOfTwoSortedArray {
         }
     }
 
-    public int[] findRange(int[] nums, final int n, final int index, int[] range) {
-        int[] leftRange = new int[]{range[0], index}, rightRange = new int[]{index, range[1]};
-        int leftIndex, rightIndex;
+    /**
+     * @param numberArray 检测的数组
+     * @param number      检测的数字
+     * @param index       该数字的可能位置
+     * @param range       该数字出现的位置的开区间
+     * @return
+     */
+    public int[] findRange(final int[] numberArray, final int number, int index, final int[] range) {
+        int[] leftRange = new int[]{Math.max(range[0], 0), Math.min(range[1], numberArray.length - 1)};
+        int leftIndex, leftIndexValue, rightIndex, rightIndexValue;
         int[] resultRange = new int[]{-1, -1};
+        Integer rightIndexMin = null, rightIndexMax = null;
+        final int length = numberArray.length, firstValue = numberArray[0], lastValue = numberArray[length - 1];
         while (true) {
-            if (resultRange[0] == -1) {
-                leftIndex = (leftRange[0] + leftRange[1]) / 2;
-                if (nums[leftIndex] < n && nums[leftIndex + 1] == n) {
+            leftIndex = (leftRange[0] + leftRange[1]) / 2;
+            leftIndexValue = numberArray[leftIndex];
+            if (number > leftIndexValue) {
+                if (number < numberArray[leftIndex + 1]) {
                     resultRange[0] = leftIndex;
-                } else if (nums[leftIndex] == n && nums[leftIndex - 1] < n) {
+                    resultRange[1] = leftIndex + 1;
+                    return resultRange;
+                } else if (number == numberArray[leftIndex + 1]) {
+                    resultRange[0] = leftIndex;
+                    rightIndexMin = leftIndex + 1;
+                    break;
+                }
+                if (leftIndex == length - 2) {
+                    if (number > numberArray[length - 1]) {
+                        resultRange[0] = length;
+                        resultRange[1] = length;
+                        return resultRange;
+                    }
+                    if (number == numberArray[length - 1]) {
+                        resultRange[0] = leftIndex;
+                        resultRange[1] = length;
+                        return resultRange;
+                    }
+                    if (number <  numberArray[length - 1]) {
+                        resultRange[0] = leftIndex;
+                        resultRange[1] = length - 1;
+                        return resultRange;
+                    }
+                }
+                leftRange[0] = leftIndex;
+            } else if (number == leftIndexValue) {
+                if (leftIndex == 0) {
+                    resultRange[0] = -1;
+                    if (number < numberArray[1]) {
+                        resultRange[1] = 1;
+                        return resultRange;
+                    }
+                    rightIndexMin = leftIndex;
+                    break;
+                }
+                if (number > numberArray[leftIndex - 1]) {
                     resultRange[0] = leftIndex - 1;
-                } else {
-                    if (nums[leftIndex] == n) {
-                        leftRange[1] = leftIndex;
-                    } else {
-                        leftRange[0] = leftIndex;
-                    }
+                    rightIndexMin = leftIndex;
+                    break;
                 }
+                leftRange[1] = leftIndex;
+            } else if (number < leftIndexValue) {
+                if (leftIndex == 0) {
+                    resultRange[0] = -1;
+                    resultRange[1] = -1;
+                    return resultRange;
+                }
+                if (number > numberArray[leftIndex - 1]) {
+                    resultRange[0] = leftIndex - 1;
+                    resultRange[1] = leftIndex;
+                    return resultRange;
+                }
+                leftRange[1] = leftIndex;
             }
+        }
 
-            if (resultRange[1] == -1) {
-                rightIndex = (rightRange[1] + rightRange[0]) / 2;
-                if (nums[rightIndex] > n && nums[rightIndex + 1] == n) {
-                    resultRange[1] = rightIndex;
-                } else if (nums[rightIndex] == n && nums[rightIndex + 1] > n) {
+        int[] rightRange = new int[]{rightIndexMin, Math.min(range[1], numberArray.length - 1)};
+        while (true) {
+            rightIndex = (rightRange[1] + rightRange[0]) / 2;
+            rightIndexValue = numberArray[rightIndex];
+            if (number > rightIndexValue) {
+                if (rightIndex == length - 1) {
+                    resultRange[1] = length;
+                    return resultRange;
+                }
+                if (number < numberArray[rightIndex + 1]) {
+                    resultRange[0] = rightIndex;
                     resultRange[1] = rightIndex + 1;
-                } else {
-                    if (nums[rightIndex] == n) {
-                        rightRange[0] = rightIndex;
-                    } else {
-                        rightRange[1] = rightIndex;
-                    }
+                    return resultRange;
                 }
-            }
-
-            if (resultRange[0] != -1 && resultRange[1] != -1) {
-                return resultRange;
+                rightRange[0] = rightIndex;
+            } else if (number == rightIndexValue) {
+                if (rightIndex == length - 1) {
+                    resultRange[1] = length;
+                    return resultRange;
+                }
+                if (number < numberArray[rightIndex + 1]) {
+                    resultRange[1] = rightIndex + 1;
+                    return resultRange;
+                }
+                rightRange[0] = rightIndex;
+            } else if (number < rightIndexValue) {
+                if (number > numberArray[rightIndex - 1]) {
+                    resultRange[0] = rightIndex - 1;
+                    resultRange[1] = rightIndex;
+                    return resultRange;
+                }
+                if (number == numberArray[rightIndex - 1]) {
+                    resultRange[1] = rightIndex;
+                    return resultRange;
+                }
             }
         }
     }
