@@ -1,6 +1,5 @@
 package leetcode.hard;
 
-import leetcode.BaseTest;
 import me.alfod.hard.MedianOfTwoSortedArray;
 import me.alfod.hard.Utils;
 import org.junit.Test;
