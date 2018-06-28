@@ -13,6 +13,7 @@ import org.junit.Test;
  */
 public class MedianOfTwoSortedArrayTest extends BaseTest {
     private final int[] array = new int[]{7, 8, 8, 10};
+    private final int[] array1 = new int[]{5, 6, 8, 9, 11};
     private MedianOfTwoSortedArray medianOfTwoSortedArray = new MedianOfTwoSortedArray();
 
     @Test
@@ -59,45 +60,22 @@ public class MedianOfTwoSortedArrayTest extends BaseTest {
         print(range);
     }
 
-
+    //
+//    private final int[] array = new int[]{7, 8, 8, 10};
+//    private final int[] array1 = new int[]{5, 6, 8, 9, 11};
     @Test
-    public void test1() {
-        int[] nums1 = new int[]{1, 2, 5, 8, 11};
-        int[] nums2 = new int[]{7, 9, 10};
-        double x = medianOfTwoSortedArray.findMedianSortedArrays(nums1, nums2);
-        System.out.println(x);
+    public void findByIndex() {
+        double x = medianOfTwoSortedArray.findByIndex(array, array1, 6);
+        print(x);
     }
 
     @Test
-    public void test3() {
-        int[] nums1 = new int[]{1, 2};
-        int[] nums2 = new int[]{3, 4};
-        double x = medianOfTwoSortedArray.findMedianSortedArrays(nums1, nums2);
-        System.out.println(x);
-    }
-
-    @Test
-    public void test4() {
-        int[] nums1 = new int[]{};
-        int[] nums2 = new int[]{2, 3};
-        double x = medianOfTwoSortedArray.findMedianSortedArrays(nums1, nums2);
-        System.out.println(x);
-    }
-
-    @Test
-    public void test5() {
-        int[] nums1 = new int[]{1};
-        int[] nums2 = new int[]{1};
-        double x = medianOfTwoSortedArray.findMedianSortedArrays(nums1, nums2);
-        System.out.println(x);
+    public void findMedianSortedArrays() {
+        final int[] array = new int[]{7, 8, 10};
+        final int[] array1 = new int[]{5, 9, 11};
+        double x = medianOfTwoSortedArray.findMedianSortedArrays(array, array1);
+        print(x);
     }
 
 
-    @Test
-    public void test2() {
-        int[] nums1 = new int[]{1, 3};
-        int[] nums2 = new int[]{2};
-        double x = medianOfTwoSortedArray.findMedianSortedArrays(nums1, nums2);
-        System.out.println(x);
-    }
 }

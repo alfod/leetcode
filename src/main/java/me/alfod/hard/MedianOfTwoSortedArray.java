@@ -2,6 +2,8 @@ package me.alfod.hard;
 
 /**
  * Created by Arvin Alfod on 2018/4/25.
+ *
+ * @author alfod
  */
 public class MedianOfTwoSortedArray {
 
@@ -26,8 +28,66 @@ public class MedianOfTwoSortedArray {
             }
         }
 
-        return 0.0;
+        if (!isEven) {
+            return findByIndex(nums1, nums2, halfSumLength);
+        } else {
+            int value1 = findByIndex(nums1, nums2, halfSumLength);
+            int value2 = findByIndex(nums1, nums2, halfSumLength - 1);
+            return (double) (value1 + value2) / 2;
+        }
+    }
 
+
+    /**
+     * @param nums1 array 1
+     * @param nums2 array 2
+     * @param index index from 0
+     * @return the value rest with index
+     */
+    public int findByIndex(int[] nums1, int[] nums2, final int index) {
+        final int length1 = nums1.length, length2 = nums2.length;
+        final int sumLength = length1 + length2, halfSumLength = sumLength / 2;
+        int[] tempArray, tempArray1, tempArray2, countedIndexRange, indexRange = new int[2];
+        int tempValue, tempIndex, indexMin, indexMax;
+        if (index < 0 || index >= sumLength) {
+            throw new RuntimeException("index is not valid " + index);
+        }
+
+        tempArray1 = nums1;
+        tempArray2 = nums2;
+        indexRange[0] = 0;
+        indexRange[1] = tempArray1.length;
+        while (true) {
+            tempIndex = (indexRange[0] + indexRange[1]) / 2;
+            tempValue = tempArray1[tempIndex];
+            countedIndexRange = findRange(tempArray2, tempValue);
+            indexMin = tempIndex + countedIndexRange[0];
+            indexMax = tempIndex + countedIndexRange[1];
+            if (index >= indexMin && index <= indexMax) {
+                return tempValue;
+            }
+            if (indexRange[1] - indexRange[0] <= 1) {
+                tempArray = tempArray1;
+                tempArray1 = tempArray2;
+                tempArray2 = tempArray;
+                indexRange[0] = 0;
+                indexRange[1] = tempArray1.length;
+                continue;
+            }
+            if (index > indexMax) {
+                indexRange[0] = tempIndex;
+            }
+            if (index < indexMin) {
+                indexRange[1] = tempIndex;
+            }
+
+        }
+
+
+    }
+
+    public int[] findRange(final int[] numberArray, final int number) {
+        return findRange(numberArray, number, new int[]{0, numberArray.length - 1});
     }
 
     /**
