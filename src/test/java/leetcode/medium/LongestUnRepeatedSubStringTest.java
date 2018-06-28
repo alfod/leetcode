@@ -60,6 +60,15 @@ public class LongestUnRepeatedSubStringTest extends BaseTest {
 //        print(n);
     }
 
+    @Test
+    public void test7() {
+        int n = longestUnRepeatedSubString.lengthOfLongestSubstring(  "au");
+        Assert.assertEquals(2,n);
+//        print(n);
+    }
+
+
+
 
 
 
