@@ -2,6 +2,7 @@ package leetcode.medium;
 
 import leetcode.BaseTest;
 import me.alfod.medium.LongestUnRepeatedSubString;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.LinkedList;
@@ -15,46 +16,51 @@ import java.util.List;
  * @note
  */
 public class LongestUnRepeatedSubStringTest extends BaseTest {
-    LongestUnRepeatedSubString longestUnRepeatedSubString = new LongestUnRepeatedSubString();
-
-    @Test
-    public void list() {
-        List<Integer> list = new LinkedList<>();
-        list.add(0, 0);
-        list.add(list.size(), 1);
-
-        print(list);
-    }
+    private LongestUnRepeatedSubString longestUnRepeatedSubString = new LongestUnRepeatedSubString();
 
     @Test
     public void test1() {
         int n = longestUnRepeatedSubString.lengthOfLongestSubstring("abcabcbb");
-        print(n);
+        Assert.assertEquals(3,n);
+       // print(n);
     }
 
     @Test
     public void test2() {
         int n = longestUnRepeatedSubString.lengthOfLongestSubstring("bbbbb");
-        print(n);
+        Assert.assertEquals(1,n);
+//        print(n);
     }
 
     @Test
     public void test3() {
         int n = longestUnRepeatedSubString.lengthOfLongestSubstring("pwwkew");
-        print(n);
+        Assert.assertEquals(3,n);
+//        print(n);
     }
 
     @Test
     public void test4() {
         int n = longestUnRepeatedSubString.lengthOfLongestSubstring("cdd");
-        print(n);
+        Assert.assertEquals(2,n);
+//        print(n);
     }
 
     @Test
     public void test5() {
         int n = longestUnRepeatedSubString.lengthOfLongestSubstring("abcb");
-        print(n);
+        Assert.assertEquals(3,n);
+//        print(n);
     }
+
+    @Test
+    public void test6() {
+        int n = longestUnRepeatedSubString.lengthOfLongestSubstring(  "ohomm");
+        Assert.assertEquals(3,n);
+//        print(n);
+    }
+
+
 
 
 }
