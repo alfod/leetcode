@@ -22,7 +22,7 @@ public class MedianOfTwoSortedArray {
                 tempArray = nums1;
             }
             if (isEven) {
-                return (tempArray[halfSumLength] + tempArray[halfSumLength - 1]) / 2;
+                return (double) (tempArray[halfSumLength] + tempArray[halfSumLength - 1]) / 2;
             } else {
                 return tempArray[halfSumLength];
             }
@@ -112,6 +112,21 @@ public class MedianOfTwoSortedArray {
             resultRange[1] = length;
             return resultRange;
         }
+        if (length == 1) {
+            if (number < firstValue) {
+                resultRange[0] = 0;
+                resultRange[1] = 0;
+            }
+            if (number == firstValue) {
+                resultRange[0] = 0;
+                resultRange[1] = 1;
+            }
+            if (number > firstValue) {
+                resultRange[0] = 1;
+                resultRange[1] = 1;
+            }
+            return resultRange;
+        }
 
         while (true) {
             leftIndex = (leftRange[0] + leftRange[1]) / 2;
@@ -154,7 +169,7 @@ public class MedianOfTwoSortedArray {
                     rightIndexMin = leftIndex;
                     break;
                 }
-                leftRange[1] = leftIndex;
+                leftRange[1] = leftIndex - 1;
             } else if (number < leftIndexValue) {
                 if (number > numberArray[leftIndex - 1]) {
                     resultRange[0] = leftIndex;
@@ -185,7 +200,7 @@ public class MedianOfTwoSortedArray {
                     resultRange[1] = rightIndex + 1;
                     return resultRange;
                 }
-                rightRange[0] = rightIndex;
+                rightRange[0] = rightIndex + 1;
             } else if (number < rightIndexValue) {
                 if (number > numberArray[rightIndex - 1]) {
                     resultRange[0] = rightIndex;
@@ -196,6 +211,7 @@ public class MedianOfTwoSortedArray {
                     resultRange[1] = rightIndex;
                     return resultRange;
                 }
+                rightRange[1] = rightIndex - 1;
             }
         }
     }
