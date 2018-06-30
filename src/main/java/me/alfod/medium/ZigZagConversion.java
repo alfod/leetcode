@@ -16,7 +16,7 @@ public class ZigZagConversion {
         StringBuilder characters = new StringBuilder(LENGTH * 2);
         int tempIndex;
         for (int y = 0; y < numRows; y++) {
-            for (int x = 0; x < LENGTH / numRows; x++) {
+            for (int x = 0; x <= LENGTH / numRows; x++) {
                 tempIndex = (2 * numRows - 2) * x + y;
                 if (tempIndex >= LENGTH) {
                     break;
