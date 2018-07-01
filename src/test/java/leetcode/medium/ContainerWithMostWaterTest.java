@@ -37,6 +37,12 @@ public class ContainerWithMostWaterTest extends BaseTest {
     }
 
     @Test
+    public void test5() {
+        int area = containerWithMostWater.maxArea(new int[]{9, 1, 30, 4, 9});
+        Assert.assertEquals(4, area);
+    }
+
+    @Test
     public void test4() {
         ClassLoader classLoader = this.getClass().getClassLoader();
         URL url = classLoader.getResource("ContainerWithMostWaterArray");
@@ -63,7 +69,7 @@ public class ContainerWithMostWaterTest extends BaseTest {
         long t1 = System.nanoTime();
         int area = containerWithMostWater.maxArea(array);
         long t2 = System.nanoTime();
-        print("time :" + (t2 - t1) / 1000_000+" ms");
+        print("time :" + (t2 - t1) / 1000_000 + " ms");
         Assert.assertEquals(4, area);
     }
 }
